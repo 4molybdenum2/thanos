@@ -23,7 +23,7 @@ type HTTPConfig struct {
 	MaxIdleConns          int            `yaml:"max_idle_conns"`
 	MaxIdleConnsPerHost   int            `yaml:"max_idle_conns_per_host"`
 	MaxConnsPerHost       int            `yaml:"max_conns_per_host"`
-	DisableCompression    bool	     `yaml:"disable_compression"`
+	DisableCompression    bool           `yaml:"disable_compression"`
 	// Allow upstream callers to inject a round tripper
 	Transport http.RoundTripper `yaml:"-"`
 }
@@ -62,7 +62,7 @@ func DefaultTransport(config HTTPConfig) *http.Transport {
 		TLSHandshakeTimeout:   time.Duration(config.TLSHandshakeTimeout),
 		ExpectContinueTimeout: time.Duration(config.ExpectContinueTimeout),
 		ResponseHeaderTimeout: time.Duration(config.ResponseHeaderTimeout),
-		DisableCompression:	config.DisableCompression,
-		TLSClientConfig:	&tls.Config{InsecureSkipVerify: config.InsecureSkipVerify},
+		DisableCompression:    config.DisableCompression,
+		TLSClientConfig:       &tls.Config{InsecureSkipVerify: config.InsecureSkipVerify},
 	}
 }
